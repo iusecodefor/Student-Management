@@ -4,12 +4,12 @@ import mysql.connector
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="qwerty123",  # Change this to your MySQL password
+    password="qwerty123", 
     database="student_db"
 )
 cursor = conn.cursor()
 
-# Function to Add Student
+
 def add_student(name, age, cgpa, email):
     sql = "INSERT INTO students (name, age, cgpa, email) VALUES (%s, %s, %s, %s)"
     values = (name, age, cgpa, email)
@@ -17,7 +17,6 @@ def add_student(name, age, cgpa, email):
     conn.commit()
     print(" Student added successfully!")
 
-# Function to View Students
 def view_students():
     cursor.execute("SELECT * FROM students")
     students = cursor.fetchall()
@@ -25,7 +24,7 @@ def view_students():
     for student in students:
         print(student)
 
-# Function to Update Student
+
 def update_student(student_id, name, age, cgpa, email):
     sql = "UPDATE students SET name=%s, age=%s, cgpa=%s, email=%s WHERE id=%s"
     values = (name, age, cgpa, email, student_id)
@@ -33,14 +32,14 @@ def update_student(student_id, name, age, cgpa, email):
     conn.commit()
     print(" Student updated successfully!")
 
-# Function to Delete Student
+
 def delete_student(student_id):
     sql = "DELETE FROM students WHERE id=%s"
     cursor.execute(sql, (student_id,))
     conn.commit()
     print(" Student deleted successfully!")
 
-# Menu-Driven Program
+
 while True:
     print("\n---  Student Management System ---")
     print("1. Add Student")
